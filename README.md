@@ -2,7 +2,7 @@
 
 catch-mini is a minimal subset of [Catch2 C++ test framework](https://github.com/catchorg/Catch2), implemented in less than 300 lines of code.  
 
-It is distributed as a single header file.
+It is distributed as a single header file. To replace Catch with catch-mini you only need to replace this header file, so if you only need Catch's basic functionality (TEST_CASE and REQUIRE macros), maybe catch-mini can be useful to you.
 
 ## Why do we need yet another C++ test framework?
 
