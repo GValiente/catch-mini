@@ -26,7 +26,7 @@ So what does catch-mini bring to the party that differentiates it from these?
 
 ## Where to put catch-mini?
 
-catch-mini is header only. All you need to do is drop the file somewhere reachable from your project - either in some central location you can set your header search path to find, or directly into your project tree itself!
+catch-mini is header only. All you need to do is drop the catch.hpp file somewhere reachable from your project - either in some central location you can set your header search path to find, or directly into your project tree itself!
 
 The rest of this tutorial will assume that the catch-mini single-include header (or the include folder) is available unqualified - but you may need to prefix it with a folder name if necessary.
 
