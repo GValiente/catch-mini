@@ -1,12 +1,13 @@
 # catch-mini
 
-catch-mini is a minimal subset of [Catch2 C++ test framework](https://github.com/catchorg/Catch2), implemented in less than 300 lines of code.
+catch-mini is a minimal subset of [Catch2 C++ test framework](https://github.com/catchorg/Catch2), implemented in less than 300 lines of code.  
+
 It is distributed as a single header file.
 
 ## Why do we need yet another C++ test framework?
 
 Good question. For C++ there are quite a number of established frameworks, including (but not limited to),
-[Catch2](https://github.com/catchorg/Catch2)
+[Catch2](https://github.com/catchorg/Catch2),
 [Google Test](http://code.google.com/p/googletest/),
 [Boost.Test](http://www.boost.org/doc/libs/1_49_0/libs/test/doc/html/index.html),
 [CppUnit](http://sourceforge.net/apps/mediawiki/cppunit/index.php?title=Main_Page),
