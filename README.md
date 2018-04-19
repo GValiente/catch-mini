@@ -16,9 +16,7 @@ Good question. For C++ there are quite a number of established frameworks, inclu
 
 So what does catch-mini bring to the party that differentiates it from these?
 
-### Features
-
-* Quick and Really easy to get started. Just download catch.hpp, `#include` it and you're away.
+* Quick and really easy to get started. Just download catch.hpp, `#include` it and you're away.
 * No external dependencies. As long as you can compile C++11 and have a C++ standard library available.
 * Write test cases as, self-registering, functions.
 * Tests are named using free-form strings - no more couching names in legal identifiers.
