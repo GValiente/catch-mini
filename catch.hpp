@@ -212,8 +212,8 @@ namespace
                 auto numPassedAssertionsStr = std::to_string(numAssertions - numFailedTestCases);
                 padStrings(numPassedTestCasesStr, numPassedAssertionsStr);
 
-                std::cout << "test cases: " << numTestCasesStr << " | "  << numPassedTestCasesStr << " passed | " << numFailedTestCases << " failed" << std::endl;
-                std::cout << "assertions: " << numAssertionsStr << " | "  << numPassedAssertionsStr << " passed | " << numFailedTestCases << " failed" << std::endl;
+                std::cout << "test cases: " << numTestCasesStr << " | " << numPassedTestCasesStr << " passed | " << numFailedTestCases << " failed" << std::endl;
+                std::cout << "assertions: " << numAssertionsStr << " | " << numPassedAssertionsStr << " passed | " << numFailedTestCases << " failed" << std::endl;
                 exitCode = 1;
             }
             else
@@ -265,7 +265,6 @@ Assertion::Assertion(const char* _expr, const char* _file, int _line) noexcept :
 int main()
 {
     std::cout << "This is a catch-mini host application" << std::endl << std::endl;
-
     return CatchMini::launchTestCases();
 }
 #endif
