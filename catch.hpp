@@ -52,7 +52,7 @@
 
 #define TEST_CASE(TestName) CATCH_MINI_TESTCASE(TestName, __FILE__, __LINE__)
 
-#define REQUIRE(Expr) CATCH_MINI_TEST(Expr, __FILE__, __LINE__)
+#define REQUIRE(...) CATCH_MINI_TEST((__VA_ARGS__), __FILE__, __LINE__)
 
 
 // INTERNAL API //
