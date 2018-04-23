@@ -175,7 +175,7 @@ namespace
                     ++numFailedTestCases;
 
                     std::cout << assertion.file << ':' << assertion.line << ": FAILED:" << std::endl;
-                    std::cout << "\tREQUIRE(" << assertion.expr << ")" << std::endl;
+                    std::cout << "\tREQUIRE" << assertion.expr << std::endl;
                     std::cout << std::endl;
                 }
                 catch(const std::exception& exception)
