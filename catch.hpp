@@ -209,11 +209,15 @@ namespace
                 padStrings(numTestCasesStr, numAssertionsStr);
 
                 auto numPassedTestCasesStr = std::to_string(testCases.size() - numFailedTestCases);
-                auto numPassedAssertionsStr = std::to_string(numAssertions - numFailedTestCases);
+                auto numPassedAssertionsStr = std::to_string(numAssertions ? numAssertions - numFailedTestCases : 0);
                 padStrings(numPassedTestCasesStr, numPassedAssertionsStr);
 
-                std::cout << "test cases: " << numTestCasesStr << " | " << numPassedTestCasesStr << " passed | " << numFailedTestCases << " failed" << std::endl;
-                std::cout << "assertions: " << numAssertionsStr << " | " << numPassedAssertionsStr << " passed | " << numFailedTestCases << " failed" << std::endl;
+                auto numFailedTestCasesStr = std::to_string(numFailedTestCases);
+                auto numFailedAssertionsStr = std::to_string(numAssertions ? numFailedTestCases : 0);
+                padStrings(numPassedTestCasesStr, numPassedAssertionsStr);
+
+                std::cout << "test cases: " << numTestCasesStr << " | " << numPassedTestCasesStr << " passed | " << numFailedTestCasesStr << " failed" << std::endl;
+                std::cout << "assertions: " << numAssertionsStr << " | " << numPassedAssertionsStr << " passed | " << numFailedAssertionsStr << " failed" << std::endl;
                 exitCode = 1;
             }
             else
