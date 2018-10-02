@@ -41,9 +41,9 @@
 // Tests:
 #define CATCH_MINI_TEST(Expr, File, Line) \
     do { \
-        CatchMini::Assertion assertion(CATCH_MINI_STR(Expr), File, Line); \
+        CatchMini::Assertion::increaseCount(); \
         if(! (Expr)) { \
-            throw assertion; \
+            throw CatchMini::Assertion(CATCH_MINI_STR(Expr), File, Line); \
         } \
     } while(false)
 
@@ -67,7 +67,7 @@ struct TestCase
     const char* file;
     int line;
 
-    static bool create(void(*function)(), const char* name, const char* file, int line);
+    static bool create(void(*function)(), const char* name, const char* file, int line) noexcept;
 };
 
 
@@ -76,6 +76,8 @@ struct Assertion
     const char* expr;
     const char* file;
     int line;
+
+    static void increaseCount() noexcept;
 
     Assertion(const char* _expr, const char* _file, int _line) noexcept;
 };
@@ -228,30 +230,43 @@ namespace
     }
 }
 
-bool TestCase::create(void(*function)(), const char* name, const char* file, int line)
+bool TestCase::create(void(*function)(), const char* name, const char* file, int line) noexcept
 {
-    initStaticData();
-
-    if(staticData->firstDuplicatedTestCase)
+    try
     {
-        return false;
-    }
+        initStaticData();
 
-    TestCase testCase{ function, name, file, line };
-    auto& testCases = staticData->testCases;
-
-    for(const auto& testCasePair : testCases)
-    {
-        if(testCasePair.first == name)
+        if(staticData->firstDuplicatedTestCase)
         {
-            staticData->firstDuplicatedTestCase.reset(new TestCase(testCasePair.second));
-            staticData->secondDuplicatedTestCase.reset(new TestCase(testCase));
             return false;
         }
-    }
 
-    testCases.push_back(std::make_pair(name, testCase));
-    return true;
+        TestCase testCase{ function, name, file, line };
+        auto& testCases = staticData->testCases;
+
+        for(const auto& testCasePair : testCases)
+        {
+            if(testCasePair.first == name)
+            {
+                staticData->firstDuplicatedTestCase.reset(new TestCase(testCasePair.second));
+                staticData->secondDuplicatedTestCase.reset(new TestCase(testCase));
+                return false;
+            }
+        }
+
+        testCases.emplace_back(name, testCase);
+        return true;
+    }
+    catch(...)
+    {
+        std::cerr << "TestCase::create uncaught exception" << std::endl;
+        return false;
+    }
+}
+
+void Assertion::increaseCount() noexcept
+{
+    ++numAssertions;
 }
 
 Assertion::Assertion(const char* _expr, const char* _file, int _line) noexcept :
@@ -259,7 +274,6 @@ Assertion::Assertion(const char* _expr, const char* _file, int _line) noexcept :
     file(_file),
     line(_line)
 {
-    ++numAssertions;
 }
 
 }
